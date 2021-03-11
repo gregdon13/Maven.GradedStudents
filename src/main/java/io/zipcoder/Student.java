@@ -10,6 +10,10 @@ public class Student {
     String lastName = "";
     ArrayList<Double> examScores;
 
+    public Student() {
+
+    }
+
     public Student(String firstName, String lastName, Double[] testScores) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -39,7 +43,7 @@ public class Student {
             }
         }
         //output += ("Exam " + (examStrArr.length) + ": " + examStrArr[examStrArr.length-1]);
-        System.out.println(output);
+//        System.out.println(output);
         return output;
     }
 
@@ -53,7 +57,8 @@ public class Student {
 
     public double getAverageExamScore() {
         double sum = 0.0;
-        Double[] examArrDbl = examScores.toArray(new Double[examScores.size()]);
+        int arrSize = examScores.size();
+        Double[] examArrDbl = examScores.toArray(new Double[arrSize]);
         for (double d : examArrDbl) {
             sum += d;
         }

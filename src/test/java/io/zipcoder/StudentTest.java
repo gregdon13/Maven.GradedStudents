@@ -24,8 +24,6 @@ public class StudentTest {
         String actual = student.getFirstName();
 
         //Then
-        System.out.println(expected);
-        System.out.println(actual);
         Assert.assertEquals(expected, actual);
 
     }
@@ -91,6 +89,7 @@ public class StudentTest {
         //When
         double expected = 75.0;
         double actual = student.getAverageExamScore();
+        System.out.println(actual);
 
         //Then
         Assert.assertTrue(expected == actual);
