@@ -43,6 +43,10 @@ public class Student {
         return output;
     }
 
+    public void addExamScore (double examScore) {
+        examScores.add(examScore);
+    }
+
     public void setExamScores(Double[] examScores) {
         this.examScores = (ArrayList<Double>) Arrays.asList(examScores);
     }

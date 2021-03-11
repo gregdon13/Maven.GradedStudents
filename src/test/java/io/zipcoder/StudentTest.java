@@ -26,4 +26,21 @@ public class StudentTest {
         Assert.assertEquals(expected, output);
     }
 
+    @Test
+    public void addExamScoreTest() {
+        //Given
+        String firstName = "Darrow";
+        String lastName = "Andromedus";
+        Double[] examScores = {100.0};
+        Student student = new Student(firstName, lastName, examScores);
+
+        //When
+        String expected = "Exam Scores:\n" + "Exam 1: 100.0\n" + "Exam 2: 95.0";
+        student.addExamScore(95.0);
+        String actual = student.getExamScores();
+
+        //Then
+        Assert.assertEquals(expected, actual);
+    }
+
 }
