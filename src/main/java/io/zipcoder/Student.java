@@ -47,6 +47,10 @@ public class Student {
         examScores.add(examScore);
     }
 
+    public void changeExamScore(int examNumber, double newScore) {
+        examScores.set(examNumber -1, newScore);
+    }
+
     public void setExamScores(Double[] examScores) {
         this.examScores = (ArrayList<Double>) Arrays.asList(examScores);
     }
