@@ -51,6 +51,23 @@ public class Student {
         examScores.set(examNumber -1, newScore);
     }
 
+    public double getAverageExamScore() {
+        double sum = 0.0;
+        Double[] examArrDbl = examScores.toArray(new Double[examScores.size()]);
+        for (double d : examArrDbl) {
+            sum += d;
+        }
+        double average = sum / examArrDbl.length;
+        return average;
+    }
+
+    public String toString() {
+        String output = "Student Name: " + firstName + " " + lastName + "\n"
+                + "> Average Score: " + getAverageExamScore() + "\n"
+                + "> " + getExamScores();
+        return output;
+    }
+
     public void setExamScores(Double[] examScores) {
         this.examScores = (ArrayList<Double>) Arrays.asList(examScores);
     }
@@ -66,5 +83,4 @@ public class Student {
     public Integer getNumberOfExamsTaken() {
         return examScores.size();
     }
-
 }
