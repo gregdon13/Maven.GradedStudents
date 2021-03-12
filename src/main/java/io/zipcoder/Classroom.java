@@ -1,10 +1,7 @@
 package io.zipcoder;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Classroom {
     Student[] students = new Student[0];
@@ -70,15 +67,37 @@ public class Classroom {
         //Student[] outArr = new Student[stuArrPh.length];
 
         for (int i = 0; i < stuArrPh.length - 1; i++) {
-            for (int j = 0; j < stuArrPh.length -1; j++) {
-                if (stuArrPh[i].getAverageExamScore() > stuArrPh[j + 1].getAverageExamScore()) {
-                    Student tempStu = stuArrPh[j + 1];
-                    stuArrPh[j + 1] = stuArrPh[i];
+            for (int j = i+1; j < stuArrPh.length; j++) {
+                if (stuArrPh[i].getAverageExamScore() > stuArrPh[j].getAverageExamScore()) {
+                    Student tempStu = stuArrPh[j];
+                    stuArrPh[j] = stuArrPh[i];
                     stuArrPh[i] = tempStu;
                 }
             }
         }
         return stuArrPh;
+    }
 
+    public HashMap<Student, Character> getGradeBook() {
+        Student[] lowToHigh = stuByScore();
+        //System.out.println(Arrays.toString(lowToHigh));
+        HashMap<Student, Character> gradeBook = new HashMap<Student, Character>();
+        for (int i = 0; i < lowToHigh.length; i++) {
+            double percentile = ((i+1) * 100.0) / lowToHigh.length;
+            System.out.println(percentile);
+            System.out.println(lowToHigh[i]);
+            if (percentile > 89.0) {
+                gradeBook.put(lowToHigh[i], 'A');
+            } else if (percentile > 51.0 && percentile <= 89.0) {
+                gradeBook.put(lowToHigh[i], 'B');
+            } else if (percentile > 30.0 && percentile <= 51.0) {
+                gradeBook.put(lowToHigh[i], 'C');
+            } else if (percentile > 11.0 && percentile <= 30.0) {
+                gradeBook.put(lowToHigh[i], 'D');
+            } else if (percentile <= 11) {
+                gradeBook.put(lowToHigh[i], 'F');
+            }
+        }
+        return gradeBook;
     }
 }

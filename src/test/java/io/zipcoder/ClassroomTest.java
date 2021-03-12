@@ -1,9 +1,11 @@
 package io.zipcoder;
 
+import apple.laf.JRSUIUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Arrays;
+import java.sql.SQLOutput;
+import java.util.*;
 
 public class ClassroomTest {
 
@@ -92,21 +94,51 @@ public class ClassroomTest {
         //Given
         int maxNumberOfStudents = 1;
         Classroom classroom = new Classroom(maxNumberOfStudents);
-        Double[] examScores = { 80.0};
-        Double[] examScoresTwo = { 90.0};
-        Double[] examScoresThree = {100.0};
+        Double[] examScores = { 50.0, 50.0};
+        Double[] examScoresTwo = { 90.0, 100.0};
+        Double[] examScoresThree = {100.0, 100.0};
+        Double[] examScoresFour = {25.0, 35.0};
         Student leon = new Student("Leon", "Hunter", examScores);
         Student carl = new Student("Carl", "Weathers", examScoresTwo);
         Student benny = new Student("Benny", "Sharpe", examScoresThree);
+        Student jimmy = new Student ("Jimmy", "Carter", examScoresFour);
+
+        //When
+        classroom.addStudent(carl);
+        classroom.addStudent(benny);
+        classroom.addStudent(jimmy);
+        classroom.addStudent(leon);
+        Student[] newArr = classroom.stuByScore();
+
+
+        //Then
+        System.out.println(Arrays.toString(newArr));
+    }
+
+    @Test
+    public void gradeBookTest() {
+        //Given
+        int maxNumberOfStudents = 5;
+        Classroom classroom = new Classroom(maxNumberOfStudents);
+        Double[] examScores = { 80.0};
+        Double[] examScoresTwo = { 90.0};
+        Double[] examScoresThree = {100.0};
+        Double[] examScoresFour = {65.0};
+        Double[] examScoresFive = {50.0};
+        Student leon = new Student("Leon", "Hunter", examScores);
+        Student carl = new Student("Carl", "Weathers", examScoresTwo);
+        Student benny = new Student("Benny", "Sharpe", examScoresThree);
+        Student katie = new Student("Katie", "Donnelly", examScoresFour);
+        Student greg = new Student("Greg", "Pratt", examScoresFive);
 
         //When
         classroom.addStudent(carl);
         classroom.addStudent(benny);
         classroom.addStudent(leon);
-        classroom.stuByScore();
-        Student[] inOrder = classroom.getStudents();
+        classroom.addStudent(katie);
+        classroom.addStudent(greg);
 
         //Then
-        System.out.println(Arrays.toString(inOrder));
+        System.out.println(classroom.getGradeBook());
     }
 }
